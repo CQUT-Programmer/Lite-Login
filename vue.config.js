@@ -15,6 +15,12 @@ module.exports = defineConfig({
                 resolvers: [ElementPlusResolver()],
             }),
         ],
+    },
+    pages:{
+        index:{
+            entry: 'src/main.ts',
+            title:"水果小站"
+        }
     }
 
 });

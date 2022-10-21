@@ -1,11 +1,10 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from "vue-router";
-import "../views/auth/login/Login.vue";
-import Login from "@/views/auth/login/Login.vue";
+import Login from "@/views/auth/LoginPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
-        redirect:"/login"
+        redirect: "/login"
     },
     {
         path: "/login",
@@ -15,12 +14,12 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: "/register",
         name: "register",
-        component: () => import("../views/auth/Register.vue")
+        component: () => import("@/views/auth/RegisterPage.vue")
     },
     {
         path: "/changePassword",
         name: "changePassword",
-        component: () => import("../views/auth/ChangePassword.vue")
+        component: () => import("@/views/auth/ChangePasswordPage.vue")
     }
 ];
 

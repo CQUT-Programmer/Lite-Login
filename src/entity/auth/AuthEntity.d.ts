@@ -14,6 +14,9 @@ interface LoginUser {
     password: string;
 }
 
+/**
+ * 注册用户抽象接口
+ */
 interface RegisterUser {
 
     /**
@@ -34,5 +37,6 @@ interface RegisterUser {
 
 
 export {
-    LoginUser
+    LoginUser,
+    RegisterUser
 }
