@@ -1,11 +1,15 @@
 <template>
   <common-page>
-    <router-view/>
+    <router-view v-slot="{ Component} ">
+      <transition mode="out-in" name="fade">
+        <component :is="Component"></component>
+      </transition>
+    </router-view>
   </common-page>
 </template>
 
 <script lang="ts">
-
+import "@/assets/style/common/common.css";
 import CommonPage from "@/components/common/CommonPage.vue";
 
 export default {
@@ -21,5 +25,4 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
 </style>
