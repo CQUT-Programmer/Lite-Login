@@ -1,11 +1,16 @@
 <template>
-  <router-view/>
+  <common-page>
+    <router-view/>
+  </common-page>
 </template>
 
 <script lang="ts">
 
+import CommonPage from "@/components/common/CommonPage.vue";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {CommonPage}
 };
 </script>
 <style lang="scss">

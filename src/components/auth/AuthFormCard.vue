@@ -41,6 +41,7 @@ export default {
 .form-header-box {
   display: flex;
   justify-content: center;
+  padding: 10px 0;
 }
 
 /*表单卡片容器*/
@@ -49,8 +50,8 @@ export default {
   flex-wrap: wrap;
   background: rgb(254, 254, 254);
   width: 400px;
-  height: 450px;
-  padding: 20px;
+  height: auto;
+  padding: 30px 20px;
   border-radius: 8%;
   box-shadow: 3px 4px 30px grey;
 }
@@ -63,10 +64,13 @@ export default {
 /*表单底部*/
 .form-footer-card {
   padding-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 :deep(.el-form-item__label) {
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
 }
 
