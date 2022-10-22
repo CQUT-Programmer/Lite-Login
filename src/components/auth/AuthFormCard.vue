@@ -38,7 +38,7 @@ export default {
   width: 300px;
 }
 
-.form-header-box{
+.form-header-box {
   display: flex;
   justify-content: center;
 }
@@ -74,4 +74,5 @@ export default {
   padding: 25px 130px !important;
   margin: 5px 0;
 }
+
 </style>

@@ -1,6 +1,7 @@
 /**
  * 登录用户抽象接口
  */
+
 interface LoginUser {
 
     /**
@@ -27,7 +28,7 @@ interface RegisterUser {
     /**
      * 昵称
      */
-    nickname : string;
+    nickname: string;
 
     /**
      * 密码
@@ -39,4 +40,4 @@ interface RegisterUser {
 export {
     LoginUser,
     RegisterUser
-}
+};

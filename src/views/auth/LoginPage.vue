@@ -7,12 +7,13 @@
             label-position="top"
             label-width="100px"
             :model="loginForm"
+            :rules="loginRules"
         >
-          <el-form-item label="用户名">
+          <el-form-item label="用户名" prop="username">
             <el-input clearable size="large" v-model="loginForm.username"/>
           </el-form-item>
 
-          <el-form-item label="密码">
+          <el-form-item label="密码" prop="password">
             <el-input show-password size="large" v-model="loginForm.password"/>
           </el-form-item>
         </el-form>
@@ -36,6 +37,7 @@
 <script lang="ts">
 import {reactive} from "vue";
 import {LoginUser} from "@/entity/auth/AuthEntity";
+import {loginRules} from "@/entity/auth/AuthRules";
 import CommonPage from "@/components/common/CommonPage.vue";
 import AuthFormCard from "@/components/auth/AuthFormCard.vue";
 
@@ -53,8 +55,10 @@ export default {
       password: ""
     });
 
+
     return {
-      loginForm
+      loginForm,
+      loginRules
     };
   }
 };
