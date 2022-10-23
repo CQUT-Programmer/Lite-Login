@@ -1,6 +1,7 @@
 <template>
   <common-page>
-    <router-view v-slot="{ Component} ">
+    <!--路由切换的插槽，为了实现动画效果-->
+    <router-view v-slot="{Component} ">
       <transition mode="out-in" name="fade">
         <component :is="Component"></component>
       </transition>

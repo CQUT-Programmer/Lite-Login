@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AuthCode: typeof import('./src/components/auth/AuthCode.vue')['default']
     AuthFormCard: typeof import('./src/components/auth/AuthFormCard.vue')['default']
     CommonPage: typeof import('./src/components/common/CommonPage.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']

@@ -15,15 +15,22 @@ interface LoginUser {
     password: string;
 }
 
+interface AuthMail {
+
+    /**
+     * 用户邮箱
+     */
+    mail: string;
+    /**
+     * 邮箱验证
+     */
+    code: string;
+}
+
 /**
  * 注册用户抽象接口
  */
-interface RegisterUser {
-
-    /**
-     * 用户名
-     */
-    username: string;
+interface RegisterUser extends AuthMail {
 
     /**
      * 昵称
@@ -39,31 +46,24 @@ interface RegisterUser {
      * 确认密码
      */
     confirmPassword: string;
+
 }
 
 /**
  * 修改密码抽象接口
  */
-interface ChangePassword {
+interface ChangePassword extends AuthMail{
 
-    /**
-     * 用户邮箱
-     */
-    mail: string;
 
     /**
      * 新密码
      */
     newPassword: string;
-
-    /**
-     * 验证码
-     */
-    authCode: string;
 }
 
 export {
     LoginUser,
+    AuthMail,
     RegisterUser,
-    ChangePassword
+    ChangePassword,
 };

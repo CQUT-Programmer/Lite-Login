@@ -8,8 +8,8 @@
           :rules="registerRules"
       >
 
-        <el-form-item label="用户名" prop="username">
-          <el-input clearable size="large" v-model="registerUser.username"/>
+        <el-form-item label="邮箱" prop="mail">
+          <el-input clearable size="large" v-model="registerUser.mail"/>
         </el-form-item>
 
         <el-form-item label="昵称" prop="nickname">
@@ -22,6 +22,10 @@
 
         <el-form-item label="确认密码" prop="confirmPassword">
           <el-input clearable show-password size="large" v-model="registerUser.confirmPassword"/>
+        </el-form-item>
+
+        <el-form-item label="验证码" prop="authCode">
+          <auth-code/>
         </el-form-item>
 
       </el-form>
@@ -48,16 +52,18 @@ import AuthFormCard from "@/components/auth/AuthFormCard.vue";
 import {RegisterUser} from "@/entity/auth/AuthEntity";
 import {reactive} from "vue";
 import {registerRules} from "@/entity/auth/AuthRules";
+import AuthCode from "@/components/auth/AuthCode.vue";
 
 export default {
   name: "RegisterPage",
-  components: {AuthFormCard},
+  components: {AuthCode, AuthFormCard},
   setup() {
     const registerUser: RegisterUser = reactive({
-      username: "",
+      mail: "",
       nickname: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      code: ""
     });
 
     registerRules.confirmPassword = [
@@ -77,6 +83,5 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style>
 </style>
