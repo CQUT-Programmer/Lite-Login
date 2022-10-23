@@ -1,8 +1,9 @@
 /**
  * 登录用户抽象接口
  */
+import {Ref} from "vue";
 
-interface LoginUser {
+interface LoginUser extends AuthMail {
 
     /**
      * 用户名
@@ -12,7 +13,7 @@ interface LoginUser {
     /**
      * 密码
      */
-    password: string;
+    password?: string | Ref;
 }
 
 interface AuthMail {

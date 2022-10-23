@@ -6,26 +6,17 @@
           label-width="100px"
           :model="loginForm"
           :rules="loginRules"
+          ref="ruleFormRef"
       >
+
         <el-form-item label="邮箱" prop="username">
           <el-input clearable size="large" v-model="loginForm.username"/>
         </el-form-item>
 
-        <el-tabs type="card">
+        <el-form-item label="密码" prop="password">
+          <el-input show-password size="large" v-model="loginForm.password"/>
+        </el-form-item>
 
-          <el-tab-pane label="密码">
-            <el-form-item prop="password">
-              <el-input show-password size="large" v-model="loginForm.password"/>
-            </el-form-item>
-          </el-tab-pane>
-
-          <el-tab-pane label="验证码">
-            <el-form-item prop="authCode">
-              <auth-code/>
-            </el-form-item>
-          </el-tab-pane>
-
-        </el-tabs>
       </el-form>
 
     </template>
@@ -33,7 +24,9 @@
       <div>
         <el-button
             round
-            type="primary">登陆
+            type="primary"
+            @click="loginSubmit(ruleFormRef)"
+        >登陆
         </el-button>
       </div>
       <div>
@@ -55,30 +48,51 @@
 </template>
 
 <script lang="ts">
-import {reactive} from "vue";
-import {LoginUser} from "@/entity/auth/AuthEntity";
-import {loginRules} from "@/entity/auth/AuthRules";
+import {reactive, ref} from "vue";
 import AuthFormCard from "@/components/auth/AuthFormCard.vue";
-import AuthCode from "@/components/auth/AuthCode.vue";
-
+import {AuthStore} from "@/store/AuthStore";
+import {Message} from "@/utils/Message";
+import {FormInstance} from "element-plus";
+import {LoginUser} from "@/entity/auth/AuthEntity";
+import {passwordLoginRules} from "@/entity/auth/AuthRules";
 
 export default {
   name: "LoginPage",
   components: {
-    AuthCode,
     AuthFormCard,
   },
   setup() {
+    const authStore = AuthStore();
+    const ruleFormRef = ref<FormInstance>();
 
-    const loginForm: LoginUser = reactive({
+    let loginForm: LoginUser = reactive({
       username: "",
-      password: ""
+      password: "",
     });
+
+    let loginRules = passwordLoginRules;
+
+    const loginSubmit = async (formEl: FormInstance | undefined) => {
+
+      await formEl?.validate((isValid, invalidFields) => {
+        if (isValid) {
+          authStore.login(loginForm).then(res => {
+            if (res) {
+              Message.success("登陆成功");
+            }
+          }).catch(err => {
+            Message.error("网络请求异常" + err);
+          });
+        }
+      });
+    };
 
 
     return {
       loginForm,
-      loginRules
+      loginRules,
+      loginSubmit,
+      ruleFormRef,
     };
   }
 };
