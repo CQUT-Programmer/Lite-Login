@@ -44,16 +44,16 @@
 import AuthFormCard from "@/components/auth/AuthFormCard.vue";
 import {changePasswordRules} from "@/entity/auth/AuthRules";
 import {ChangePassword} from "@/entity/auth/AuthEntity";
+import AuthCode from "@/components/auth/AuthCode.vue";
 import {reactive} from "vue";
 
 export default {
   name: "ChangePassword",
-  components: {AuthFormCard},
+  components: {AuthFormCard, AuthCode},
   setup() {
     const cpdForm: ChangePassword = reactive({
       mail: "",
       newPassword: "",
-      code: ""
     });
     return {
       changePasswordRules,

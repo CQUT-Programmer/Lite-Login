@@ -63,7 +63,6 @@ export default {
       nickname: "",
       password: "",
       confirmPassword: "",
-      code: ""
     });
 
     registerRules.confirmPassword = [

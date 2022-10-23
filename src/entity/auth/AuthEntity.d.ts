@@ -20,11 +20,11 @@ interface AuthMail {
     /**
      * 用户邮箱
      */
-    mail: string;
+    mail?: string;
     /**
      * 邮箱验证
      */
-    code: string;
+    code?: string;
 }
 
 /**
@@ -52,7 +52,7 @@ interface RegisterUser extends AuthMail {
 /**
  * 修改密码抽象接口
  */
-interface ChangePassword extends AuthMail{
+interface ChangePassword extends AuthMail {
 
 
     /**

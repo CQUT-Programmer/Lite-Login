@@ -7,10 +7,13 @@ import Regx from "@/utils/Regx";
  */
 const loginRules: FormRules = reactive({
     username: [
-        {required: true, message: "用户名不能为空", trigger: "blur"}
+        {required: true, pattern: Regx.mail, message: "请输入正确的邮箱格式", trigger: "blur"}
     ],
     password: [
-        {required: true, message: "密码不能为空", trigger: "blur"}
+        {required: true, message: "请输入密码", trigger: "blur"}
+    ],
+    authCode: [
+        {required: true, message: "请输入验证码", trigger: "blur"}
     ]
 });
 
@@ -18,7 +21,7 @@ const loginRules: FormRules = reactive({
  * 注册表单验证规则
  */
 const registerRules: FormRules = reactive({
-    username: [
+    mail: [
         {
             required: true,
             pattern: Regx.mail,
@@ -40,6 +43,10 @@ const registerRules: FormRules = reactive({
     ]
 });
 
+
+/**
+ * 修改密码表单校验规则
+ */
 const changePasswordRules: FormRules = reactive({
     mail: [
         {
