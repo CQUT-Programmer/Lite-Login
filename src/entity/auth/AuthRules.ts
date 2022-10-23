@@ -5,16 +5,22 @@ import Regx from "@/utils/Regx";
 /**
  * 登陆表单验证规则
  */
-const loginRules: FormRules = reactive({
+const passwordLoginRules: FormRules = reactive({
     username: [
         {required: true, pattern: Regx.mail, message: "请输入正确的邮箱格式", trigger: "blur"}
     ],
     password: [
         {required: true, message: "请输入密码", trigger: "blur"}
     ],
+});
+
+const authCodeLoginRules: FormRules = reactive({
+    username: [
+        {required: true, pattern: Regx.mail, message: "请输入正确的邮箱格式", trigger: "blur"}
+    ],
     authCode: [
         {required: true, message: "请输入验证码", trigger: "blur"}
-    ]
+    ],
 });
 
 /**
@@ -40,7 +46,7 @@ const registerRules: FormRules = reactive({
     ],
     authCode: [
         {required: true, message: "请输入验证码", trigger: "blur"}
-    ]
+    ],
 });
 
 
@@ -60,12 +66,13 @@ const changePasswordRules: FormRules = reactive({
         {required: true, min: 3, max: 12, message: "密码应为长度3-12个字符", trigger: "blur"}
     ],
     authCode: [
-        {required: true, message: "请填写验证码", trigger: "blur"}
-    ]
+        {required: true, message: "请输入验证码", trigger: "blur"}
+    ],
 });
 
 export {
-    loginRules,
+    passwordLoginRules,
+    authCodeLoginRules,
     registerRules,
     changePasswordRules
 };

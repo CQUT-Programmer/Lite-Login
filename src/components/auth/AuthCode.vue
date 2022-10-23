@@ -1,4 +1,5 @@
 <template>
+  <!--这里必须定义一个Form，不然value永远都是undefine（玄学问题）-->
   <div class="auth-code">
     <el-input style="width: 55%" clearable size="large" v-model="authCode"/>
     <el-button text bg type="primary">发送验证码</el-button>
@@ -7,14 +8,15 @@
 
 <script lang="ts">
 
-import {ref} from "vue";
+import {MailStore} from "@/store/MailStore";
+import {storeToRefs} from "pinia";
 
 export default {
   name: "AuthCode",
   setup() {
 
-    const authCode = ref("");
-
+    const mailStore = MailStore();
+    const {authCode} = storeToRefs(mailStore);
     return {
       authCode
     };

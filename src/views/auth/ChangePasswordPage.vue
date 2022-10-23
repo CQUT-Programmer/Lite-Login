@@ -6,6 +6,7 @@
           label-width="100px"
           :model="cpdForm"
           :rules="changePasswordRules"
+          ref="ruleFormRef"
       >
 
         <el-form-item label="邮箱" prop="mail">
@@ -25,15 +26,15 @@
       <div>
         <el-button
             round
-            type="success"
-            @click="$router.push({name:'login'})">
-          返回
+            type="primary" @click="changeSubmit(ruleFormRef)">确认
         </el-button>
       </div>
       <div>
         <el-button
             round
-            type="primary">确认
+            type="success"
+            @click="$router.push({name:'login'})">
+          返回
         </el-button>
       </div>
     </template>
@@ -45,19 +46,44 @@ import AuthFormCard from "@/components/auth/AuthFormCard.vue";
 import {changePasswordRules} from "@/entity/auth/AuthRules";
 import {ChangePassword} from "@/entity/auth/AuthEntity";
 import AuthCode from "@/components/auth/AuthCode.vue";
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
+import {FormInstance} from "element-plus";
+import {AuthStore} from "@/store/AuthStore";
+import {Message} from "@/utils/Message";
+import {MailStore} from "@/store/MailStore";
+import {storeToRefs} from "pinia";
 
 export default {
   name: "ChangePassword",
   components: {AuthFormCard, AuthCode},
   setup() {
+    const authStore = AuthStore();
+    const mailStore = MailStore();
+    const {authCode} = storeToRefs(mailStore);
     const cpdForm: ChangePassword = reactive({
       mail: "",
       newPassword: "",
+      authCode: authCode
     });
+    const ruleFormRef = ref<FormInstance>();
+
+    const changeSubmit = async (formEl: FormInstance | undefined) => {
+      formEl?.validate(isValid => {
+        if (isValid) {
+          authStore.changePassword(cpdForm).then(res => {
+            Message.success("修改成功");
+          }).catch(err => {
+            Message.error("修改失败");
+          });
+        }
+      });
+    };
     return {
       changePasswordRules,
-      cpdForm
+      cpdForm,
+      ruleFormRef,
+      changeSubmit
+
     };
   }
 };

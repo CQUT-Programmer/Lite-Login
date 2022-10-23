@@ -6,6 +6,7 @@
           label-width="100px"
           :model="registerUser"
           :rules="registerRules"
+          ref="ruleFormRef"
       >
 
         <el-form-item label="邮箱" prop="mail">
@@ -34,15 +35,16 @@
       <div>
         <el-button
             round
-            type="success" @click="$router.push({name:'login'})">返回
+            type="primary" @click="registerSubmit(ruleFormRef)">注册
         </el-button>
       </div>
       <div>
         <el-button
             round
-            type="primary">注册
+            type="success" @click="$router.push({name:'login'})">返回
         </el-button>
       </div>
+
     </template>
   </AuthFormCard>
 </template>
@@ -50,22 +52,37 @@
 <script lang="ts">
 import AuthFormCard from "@/components/auth/AuthFormCard.vue";
 import {RegisterUser} from "@/entity/auth/AuthEntity";
-import {reactive} from "vue";
+import {reactive, ref} from "vue";
 import {registerRules} from "@/entity/auth/AuthRules";
 import AuthCode from "@/components/auth/AuthCode.vue";
+import {FormInstance} from "element-plus";
+import {AuthStore} from "@/store/AuthStore";
+import {Message} from "@/utils/Message";
+import {MailStore} from "@/store/MailStore";
+import {storeToRefs} from "pinia";
 
 export default {
   name: "RegisterPage",
   components: {AuthCode, AuthFormCard},
   setup() {
+
+    const authStore = AuthStore();
+    const mailStore = MailStore();
+    const {authCode} = storeToRefs(mailStore);
+    const ruleFormRef = ref<FormInstance>();
+
     const registerUser: RegisterUser = reactive({
       mail: "",
       nickname: "",
       password: "",
       confirmPassword: "",
+      authCode: authCode
     });
 
     registerRules.confirmPassword = [
+      {
+        required: true, message: "请再次输入密码", trigger: "blur"
+      },
       {
         required: true, validator: (rule, value, callback) => {
           value === registerUser.password ? callback() : callback(new Error("两次输入的密码不一致"));
@@ -74,9 +91,25 @@ export default {
       }
     ];
 
+
+    const registerSubmit = async (formEl: FormInstance | undefined) => {
+      formEl?.validate(isValid => {
+        if (isValid) {
+          authStore.register(registerUser).then(res => {
+            Message.success("注册成功");
+          }).catch(err => {
+            Message.error("注册失败");
+          });
+        }
+      });
+    };
+
+
     return {
       registerUser,
-      registerRules
+      registerRules,
+      ruleFormRef,
+      registerSubmit
     };
   },
 };

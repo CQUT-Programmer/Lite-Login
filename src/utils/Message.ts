@@ -47,9 +47,10 @@ const error: (msg: string) => void = (msg: string) => {
     });
 };
 
-export {
-    info,
-    success,
-    warning,
-    error
+
+export const Message = {
+    info: info,
+    success: success,
+    warning: warning,
+    error: error
 };
