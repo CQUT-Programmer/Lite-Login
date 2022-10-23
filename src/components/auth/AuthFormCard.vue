@@ -52,7 +52,7 @@ export default {
   width: 400px;
   height: auto;
   padding: 30px 20px;
-  border-radius: 8%;
+  border-radius: 50px;
   box-shadow: 3px 4px 30px grey;
 }
 
