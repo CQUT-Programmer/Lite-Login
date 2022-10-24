@@ -53,6 +53,7 @@ import {Message} from "@/utils/Message";
 import {MailStore} from "@/store/MailStore";
 import {storeToRefs} from "pinia";
 import {AuthLang} from "@/lang/auth/AuthLang";
+import {Common, CommonLang} from "@/lang/Common";
 
 export default {
   name: "ChangePassword",
@@ -72,9 +73,9 @@ export default {
       formEl?.validate(isValid => {
         if (isValid) {
           authStore.changePassword(cpdForm).then(res => {
-            Message.success("修改成功");
+            Message.success(AuthLang.ok.changePswd);
           }).catch(err => {
-            Message.error("修改失败");
+            Message.error(CommonLang.fail.netFail);
           });
         }
       });

@@ -56,6 +56,7 @@ import {FormInstance} from "element-plus";
 import {LoginUser} from "@/entity/auth/AuthEntity";
 import {passwordLoginRules} from "@/entity/auth/AuthRules";
 import {AuthLang} from "@/lang/auth/AuthLang";
+import {Common, CommonLang} from "@/lang/Common";
 
 export default {
   name: "LoginPage",
@@ -79,10 +80,10 @@ export default {
         if (isValid) {
           authStore.login(loginForm).then(res => {
             if (res) {
-              Message.success("登陆成功");
+              Message.success(AuthLang.ok.login);
             }
           }).catch(err => {
-            Message.error("网络请求异常" + err);
+            Message.error(CommonLang.fail.netFail + err);
           });
         }
       });

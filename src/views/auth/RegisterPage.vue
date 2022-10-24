@@ -61,6 +61,7 @@ import {Message} from "@/utils/Message";
 import {MailStore} from "@/store/MailStore";
 import {storeToRefs} from "pinia";
 import {AuthLang} from "@/lang/auth/AuthLang";
+import {CommonLang} from "@/lang/Common";
 
 export default {
   name: "RegisterPage",
@@ -82,11 +83,11 @@ export default {
 
     registerRules.confirmPassword = [
       {
-        required: true, message: "请再次输入密码", trigger: "blur"
+        required: true, message: AuthLang.rules.passwordReInput, trigger: "blur"
       },
       {
         required: true, validator: (rule, value, callback) => {
-          value === registerUser.password ? callback() : callback(new Error("两次输入的密码不一致"));
+          value === registerUser.password ? callback() : callback(new Error(AuthLang.rules.unSamePassword));
         },
         trigger: "blur"
       }
@@ -97,9 +98,9 @@ export default {
       formEl?.validate(isValid => {
         if (isValid) {
           authStore.register(registerUser).then(res => {
-            Message.success("注册成功");
+            Message.success(AuthLang.ok.register);
           }).catch(err => {
-            Message.error("注册失败");
+            Message.error(CommonLang.fail.netFail);
           });
         }
       });
