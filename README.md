@@ -10,19 +10,19 @@ Element-Plus组件自动按需导入，无需做额外配置。
 
 适合快速启动一个前端模板小项目，主要是为了应付学习的各种作业。
 
-安装依赖
+### 安装依赖
 
 ```powershell
 yarn install
 ```
 
-运行项目
+### 运行项目
 
 ```powershell
 yarn serve
 ```
 
-构建项目
+### 构建项目
 ```powershell
 yarn build
 ```
