@@ -9,14 +9,14 @@
           ref="ruleFormRef"
       >
 
-        <el-form-item label="邮箱" prop="mail">
-          <el-input size="large" clearable placeholder="输入邮箱账号" v-model="cpdForm.mail"/>
+        <el-form-item :label="AuthLang.label.mail" prop="mail">
+          <el-input size="large" clearable :placeholder="AuthLang.rules.mailInput" v-model="cpdForm.mail"/>
         </el-form-item>
 
-        <el-form-item label="新密码" prop="newPassword">
-          <el-input size="large" show-password clearable placeholder="输入新的密码" v-model="cpdForm.newPassword"/>
+        <el-form-item :label="AuthLang.label.newPassword" prop="newPassword">
+          <el-input size="large" show-password clearable :placeholder="AuthLang.rules.passwordReInput" v-model="cpdForm.newPassword"/>
         </el-form-item>
-        <el-form-item label="验证码" prop="authCode">
+        <el-form-item :label="AuthLang.label.code" prop="authCode">
           <auth-code/>
         </el-form-item>
       </el-form>
@@ -52,6 +52,7 @@ import {AuthStore} from "@/store/AuthStore";
 import {Message} from "@/utils/Message";
 import {MailStore} from "@/store/MailStore";
 import {storeToRefs} from "pinia";
+import {AuthLang} from "@/lang/auth/AuthLang";
 
 export default {
   name: "ChangePassword",
@@ -82,7 +83,8 @@ export default {
       changePasswordRules,
       cpdForm,
       ruleFormRef,
-      changeSubmit
+      changeSubmit,
+      AuthLang
 
     };
   }

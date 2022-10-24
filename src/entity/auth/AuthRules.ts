@@ -1,25 +1,26 @@
 import {FormRules} from "element-plus";
 import {reactive} from "vue";
 import Regx from "@/utils/Regx";
+import {AuthLang} from "@/lang/auth/AuthLang";
 
 /**
  * 登陆表单验证规则
  */
 const passwordLoginRules: FormRules = reactive({
     username: [
-        {required: true, pattern: Regx.mail, message: "请输入正确的邮箱格式", trigger: "blur"}
+        {required: true, pattern: Regx.mail, message: AuthLang.rules.mailValidate, trigger: "blur"}
     ],
     password: [
-        {required: true, message: "请输入密码", trigger: "blur"}
+        {required: true, message: AuthLang.rules.passwordInput, trigger: "blur"}
     ],
 });
 
 const authCodeLoginRules: FormRules = reactive({
     username: [
-        {required: true, pattern: Regx.mail, message: "请输入正确的邮箱格式", trigger: "blur"}
+        {required: true, pattern: Regx.mail, message: AuthLang.rules.mailValidate, trigger: "blur"}
     ],
     authCode: [
-        {required: true, message: "请输入验证码", trigger: "blur"}
+        {required: true, message: AuthLang.rules.codeInput, trigger: "blur"}
     ],
 });
 
@@ -31,21 +32,21 @@ const registerRules: FormRules = reactive({
         {
             required: true,
             pattern: Regx.mail,
-            message: "请填写正确的邮箱格式",
+            message: AuthLang.rules.mailValidate,
             trigger: "blur"
         },
     ],
     nickname: [
-        {required: true, min: 3, max: 15, message: "昵称应为长度3-15个字符", trigger: "blur"}
+        {required: true, min: 3, max: 15, message: AuthLang.rules.nicknameValidate, trigger: "blur"}
     ],
     password: [
-        {required: true, min: 3, max: 12, message: "密码应为长度3-12个字符", trigger: "blur"}
+        {required: true, min: 3, max: 12, message: AuthLang.rules.passwordValidate, trigger: "blur"}
     ],
     confirmPassword: [
         {required: true, validator: undefined, trigger: "blur"}
     ],
     authCode: [
-        {required: true, message: "请输入验证码", trigger: "blur"}
+        {required: true, message: AuthLang.rules.codeInput, trigger: "blur"}
     ],
 });
 
@@ -58,15 +59,15 @@ const changePasswordRules: FormRules = reactive({
         {
             required: true,
             pattern: Regx.mail,
-            message: "请填写正确的邮箱格式",
+            message: AuthLang.rules.mailValidate,
             trigger: "blur"
         }
     ],
     newPassword: [
-        {required: true, min: 3, max: 12, message: "密码应为长度3-12个字符", trigger: "blur"}
+        {required: true, min: 3, max: 12, message: AuthLang.rules.passwordValidate, trigger: "blur"}
     ],
     authCode: [
-        {required: true, message: "请输入验证码", trigger: "blur"}
+        {required: true, message: AuthLang.rules.codeInput, trigger: "blur"}
     ],
 });
 

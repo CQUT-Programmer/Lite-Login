@@ -9,12 +9,12 @@
           ref="ruleFormRef"
       >
 
-        <el-form-item label="邮箱" prop="username">
-          <el-input clearable size="large" v-model="loginForm.username"/>
+        <el-form-item :label="AuthLang.label.mail" prop="username">
+          <el-input clearable size="large" :placeholder="AuthLang.rules.mailInput" v-model="loginForm.username"/>
         </el-form-item>
 
-        <el-form-item label="密码" prop="password">
-          <el-input show-password size="large" v-model="loginForm.password"/>
+        <el-form-item :label="AuthLang.label.password" prop="password">
+          <el-input show-password size="large" :placeholder="AuthLang.rules.passwordInput" v-model="loginForm.password"/>
         </el-form-item>
 
       </el-form>
@@ -55,6 +55,7 @@ import {Message} from "@/utils/Message";
 import {FormInstance} from "element-plus";
 import {LoginUser} from "@/entity/auth/AuthEntity";
 import {passwordLoginRules} from "@/entity/auth/AuthRules";
+import {AuthLang} from "@/lang/auth/AuthLang";
 
 export default {
   name: "LoginPage",
@@ -93,6 +94,7 @@ export default {
       loginRules,
       loginSubmit,
       ruleFormRef,
+      AuthLang
     };
   }
 };

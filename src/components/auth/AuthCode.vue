@@ -1,7 +1,7 @@
 <template>
   <!--这里必须定义一个Form，不然value永远都是undefine（玄学问题）-->
   <div class="auth-code">
-    <el-input style="width: 55%" clearable size="large" placeholder="输入邮箱验证码" v-model="authCode"/>
+    <el-input style="width: 55%" clearable size="large" :placeholder="AuthLang.rules.codeInput" v-model="authCode"/>
     <el-button text bg type="primary">发送验证码</el-button>
   </div>
 </template>
@@ -10,6 +10,7 @@
 
 import {MailStore} from "@/store/MailStore";
 import {storeToRefs} from "pinia";
+import {AuthLang} from "@/lang/auth/AuthLang";
 
 export default {
   name: "AuthCode",
@@ -18,7 +19,8 @@ export default {
     const mailStore = MailStore();
     const {authCode} = storeToRefs(mailStore);
     return {
-      authCode
+      authCode,
+      AuthLang
     };
   }
 };

@@ -9,23 +9,23 @@
           ref="ruleFormRef"
       >
 
-        <el-form-item label="邮箱" prop="mail">
-          <el-input clearable size="large" placeholder="可用的邮箱账号" v-model="registerUser.mail"/>
+        <el-form-item :label="AuthLang.label.mail" prop="mail">
+          <el-input clearable size="large" :placeholder="AuthLang.rules.mailValidate" v-model="registerUser.mail"/>
         </el-form-item>
 
-        <el-form-item label="昵称" prop="nickname">
-          <el-input clearable size="large" placeholder="长度3-15的个任意字符" v-model="registerUser.nickname"/>
+        <el-form-item :label="AuthLang.label.nickname" prop="nickname">
+          <el-input clearable size="large" :placeholder="AuthLang.rules.nicknameValidate" v-model="registerUser.nickname"/>
         </el-form-item>
 
-        <el-form-item label="密码" prop="password">
-          <el-input clearable show-password size="large" placeholder="长度为3-12的数字或英文字母" v-model="registerUser.password"/>
+        <el-form-item :label="AuthLang.label.password" prop="password">
+          <el-input clearable show-password size="large" :placeholder="AuthLang.rules.passwordValidate" v-model="registerUser.password"/>
         </el-form-item>
 
-        <el-form-item label="确认密码" prop="confirmPassword">
-          <el-input clearable show-password size="large" placeholder="再一次输入密码" v-model="registerUser.confirmPassword"/>
+        <el-form-item :label="AuthLang.label.rePassword" prop="confirmPassword">
+          <el-input clearable show-password size="large" :placeholder="AuthLang.rules.passwordReInput" v-model="registerUser.confirmPassword"/>
         </el-form-item>
 
-        <el-form-item label="验证码" prop="authCode">
+        <el-form-item :label="AuthLang.label.code" prop="authCode">
           <auth-code/>
         </el-form-item>
 
@@ -60,6 +60,7 @@ import {AuthStore} from "@/store/AuthStore";
 import {Message} from "@/utils/Message";
 import {MailStore} from "@/store/MailStore";
 import {storeToRefs} from "pinia";
+import {AuthLang} from "@/lang/auth/AuthLang";
 
 export default {
   name: "RegisterPage",
@@ -109,7 +110,8 @@ export default {
       registerUser,
       registerRules,
       ruleFormRef,
-      registerSubmit
+      registerSubmit,
+      AuthLang
     };
   },
 };
